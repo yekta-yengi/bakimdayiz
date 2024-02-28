@@ -1,0 +1,17 @@
+version: '3'
+services:
+  cermodern_ui:
+    container_name: cermodern_ui
+    build: .
+    image: cermodern_ui:latest
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=www.cermodern.org,cermodern.org
+      - LETSENCRYPT_HOST=www.cermodern.org,cermodern.org
+      - LETSENCRYPT_EMAIL=teknik@cermodern.org
+    ports:
+      - "3000:3000"
+networks:
+  default:
+    name: proxy
+    external: true
